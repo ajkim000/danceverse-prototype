@@ -2,9 +2,9 @@
 
 This is a prototype for DanceVerse, a visualization of a 'universe' of choreography videos, clustered based on choreographic style and movement qualities. 
 
-[![DanceVerse interactive scatter plot](danceverse-prototype.png)](https://ajkim000.github.io/danceverse-prototype/danceverse-prototype.html)
+Click on the figure below to open an interactive plot!
 
-Interactive UMAP plot of choreography-style embeddings. Hover over choreographer names to highlight corresponding videos, or click a dot to see more information.
+[![DanceVerse interactive scatter plot](danceverse-prototype.png)](https://ajkim000.github.io/danceverse-prototype/danceverse-prototype.html)
 
 ## Setup
 

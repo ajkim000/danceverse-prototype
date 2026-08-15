@@ -30,4 +30,4 @@ Do not commit `.env`.
 
 ## Status
 
-This is a prototype. The code is organized around experimentation rather than a polished application interface, and the data used for development is not included in this repository.
+This is a prototype. The end goal is a more polished application interface. The data used for development is not included in this repository.

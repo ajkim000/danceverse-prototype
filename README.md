@@ -2,7 +2,7 @@
 
 This is a prototype for DanceVerse, a visualization of a 'universe' of choreography videos, clustered based on choreographic style and movement qualities. 
 
-Click on the figure below to open an interactive plot!
+Click on the figure below to check out the interactive plot!
 
 [![DanceVerse interactive scatter plot](danceverse-prototype.png)](https://ajkim000.github.io/danceverse-prototype/danceverse-prototype.html)
 

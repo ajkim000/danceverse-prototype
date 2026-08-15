@@ -1,4 +1,5 @@
 # DanceVerse Prototype
+_Alison Kim, Richard Guo_
 
 This is a prototype for DanceVerse, a visualization of a 'universe' of choreography videos, clustered based on choreographic style and movement qualities. 
 

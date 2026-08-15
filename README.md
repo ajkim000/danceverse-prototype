@@ -2,24 +2,6 @@
 
 Prototype pipeline for clustering and visualizing dance videos based on choreographic style and movement qualities.
 
-## Repository Structure
-
-```text
-.
-├── get_descriptions.py
-├── get_movement_timeline.py
-├── get_embeddings.py
-├── combine_timeline_embeddings.py
-├── config/
-│   └── prompts/
-│       ├── comparison_v5_no_audio.txt
-│       └── movement_timeline_v1.txt
-├── .env.example
-├── .gitignore
-├── requirements.txt
-└── README.md
-```
-
 ## Setup
 
 ```bash

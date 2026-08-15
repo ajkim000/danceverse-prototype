@@ -31,7 +31,3 @@ Do not commit `.env`.
 4. Run `get_embeddings.py` to embed the descriptions.
 5. Run `combine_timeline_embeddings.py` to concatenate description embeddings with movement timeline features.
 6. Use the resulting vectors for clustering or projection plots.
-
-## Status
-
-This is a prototype. The end goal is a more polished application interface. The data used for development is not included in this repository.

@@ -2,25 +2,6 @@
 
 Prototype pipeline for clustering and visualizing dance videos based on choreographic style and movement qualities.
 
-DanceVerse is an exploratory Python project for analyzing short dance video clips with multimodal LLMs and embedding models. The pipeline generates no-audio choreography descriptions, extracts interval-based movement timelines, converts outputs into vectors, and combines those vectors for downstream clustering or visualization.
-
-## What This Includes
-
-- Comparative choreography description generation from video clips
-- No-audio prompting, so the model focuses on visible movement rather than music
-- Interval-based movement timeline labeling
-- Description embedding generation
-- Feature combination for description embeddings plus movement timeline vectors
-
-## What Is Not Included
-
-This public prototype intentionally excludes local/private artifacts:
-
-- Raw videos
-- Generated descriptions, embeddings, plots, logs, and trial folders
-- API keys or `.env` files
-- Large local data directories
-
 ## Repository Structure
 
 ```text

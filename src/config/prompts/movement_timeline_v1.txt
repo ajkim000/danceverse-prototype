@@ -1,0 +1,99 @@
+You are analyzing {count_word} different dance videos simultaneously. Multiple dancers may be visible, typically students learning from an instructor. The uploaded videos are provided in order: the first uploaded video is video_1, the second is video_2, and so on.
+
+The videos have no audio. Base all judgments only on visible movement.
+
+Your task is to label the choreography in consecutive 1-second intervals. Describe the choreography being attempted, NOT the dancers’ execution quality. If dancers vary in skill, use the dominant movement pattern across the group or the clearest leading dancer.
+
+Analyze the videos comparatively: use the presence of the other videos as context to notice which movement characteristics are genuinely salient. However, apply the label definitions consistently across all videos. Do not assign a label merely to create a contrast, and do not change the meaning of a label depending on the comparison set. Similar intervals may receive the same labels.
+
+For every interval:
+- choose one or at most two movement labels
+- choose one or at most two quality labels
+- choose exactly one speed label
+
+Use one movement and one quality label by default. Add a second label only when both labels are strongly visible and jointly necessary to characterize the interval. A second label should add substantial information, not merely name something that is briefly present. List the more dominant label first.
+
+MOVEMENT
+
+Choose one or at most two:
+
+- upper_body: movement is concentrated primarily in the upper body
+- lower_body: movement is concentrated primarily in the lower body
+- full_body: the upper and lower body are both substantially involved
+- traveling: displacement across the floor is the defining action
+- low_level: conspicuously lowered movement, including crouching, kneeling, or floorwork
+- jump: a jump, hop, or leap is the defining action
+- turn: rotation or turning is the defining action
+- still: a deliberate pause or hold
+- mixed: no movement type clearly dominates the interval
+- unclear: there is insufficient visual evidence
+
+Add a second only when it captures a separate, prominent aspect of the movement. If you select full_body, do not also select upper_body or lower_body. If you select one of the labels mixed or unclear, do not select a second movement label. 
+
+QUALITY
+
+Choose one or at most two:
+
+- flowy: continuous, connected movement with softened transitions
+- groovy: rhythmically grounded movement emphasizing pocket or a recurring bodily groove
+- sharp: crisp attacks, clear hits, or abrupt directional changes
+- intricate: densely detailed or closely coordinated movement
+- powerful: movement emphasizing force or projection
+- laid_back: understated, unhurried, or low-tension movement
+- neutral: no listed quality strongly characterizes the movement
+- still: a deliberate pause or hold
+- unclear: there is insufficient visual evidence
+
+Choose the most dominant quality in the interval. Add a second only when it captures a separate, prominent aspect of the movement. Use neutral when the movement is clearly visible but no listed quality is strongly characteristic. Do not use unclear merely because the quality is neutral. If you select neutral, still, or unclear, do not select a second quality label.
+
+SPEED
+
+Choose exactly one:
+
+- fast: distinctly rapid bodily movement
+- moderate: neither distinctly fast nor distinctly slow
+- slow: distinctly slow bodily movement
+- still: a deliberate pause or hold for most of the interval
+- unclear: there is insufficient visual evidence
+
+Judge bodily movement speed from the visible choreography. The videos have no audio, so do not infer musical tempo.
+
+Base every selection on the movement visible during that specific interval. Do not label every interval according to the video’s overall character. When multiple labels could apply, choose the one a dancer would find most noticeable and defining during that interval.
+
+Use the following intervals:
+
+{interval_lists}
+
+Return ONLY a JSON object with keys {key_list}. Each video key must contain a timeline array in this form:
+
+{
+  "video_1": {
+    "timeline": [
+      {
+        "start": 0.0,
+        "end": 1.0,
+        "movement": ["lower_body", "traveling"],
+        "quality": ["groovy"],
+        "speed": "moderate"
+      },
+      {
+        "start": 1.0,
+        "end": 2.0,
+        "movement": ["turn"],
+        "quality": ["sharp", "powerful"],
+        "speed": "fast"
+      }
+    ]
+  }
+}
+
+Requirements:
+
+- Include every supplied interval exactly once.
+- Preserve the supplied interval order and timestamps.
+- Return one or two permitted labels for movement and quality, as JSON arrays. Return exactly one permitted label for speed, as a string.
+- Do not add intervals that were not supplied.
+- Use this exact top-level shape:
+{schema_shape}
+
+Output ONLY the JSON object. Do not include text before or after it. Use valid JSON: double-quoted property names, double-quoted string values, no comments, and no trailing commas.

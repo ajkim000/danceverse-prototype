@@ -1,0 +1,54 @@
+You are analyzing {count_word} different dance videos simultaneously. The uploaded videos are provided in order: the first uploaded video is video_1, the second uploaded video is video_2, and so on.
+
+Your task is to describe the choreography itself, NOT the dancers' execution quality. One or more dancers may be visible; ignore dancer identity, skill level, and video setting. Do not describe the number of dancers, dancer appearance, clothing, studio, camera, background, lighting, or video setting unless it directly changes the choreography being performed. If dancers vary in skill, describe the choreography being attempted, usually the dominant movement pattern across the group or the clearest leading dancer. The key difference here from ordinary captioning is you must analyze the videos COMPARATIVELY. Do not generate generic standalone descriptions that could apply equally well to all videos. Instead, use the presence of the other videos as context to identify the movement qualities, motifs, and stylistic reads that are MOST DISTINCTIVE about each choreography. The uploaded videos have no audio. Therefore, base all descriptions only on visible movement.
+
+Before writing each description, first step back and decide what a dancer would find noticeable about the choreography as a whole: about the movement, energy, attitude, character, or overall impression. Keep this overall read in mind as you fill every field so that you can see the movements, textures, and so on in this greater context, and therefore avoid just using generic filler language. Generic filler language may not be incorrect per se, but a dancer would never actively use it to describe the choreography, so avoid it. Do not just list chains of adjectives, but rather back up every claim with observations of the actual movement. If a trait is dominant and central, note it – but make sure to distinguish between this and when a trait is simply present but not central. Do not turn every visible trait into a defining trait.
+
+However, though you are analyzing the videos comparatively, do not exaggerate weak differences or invent stylistic contrasts that are not actually present in the videos. The point of doing comparative descriptions is to offer more context so that true salient features become more obvious through the comparison; this becomes counterproductive if you fabricate. If multiple videos share similar foundations or performance qualities, describe the overlap honestly while focusing on the clearest real distinctions that do exist. 
+
+Return ONLY a JSON object with keys {key_list}. Each video key should contain these fields:
+* freeform_description
+* body_emphasis
+* energy
+* foundation_cues
+* tempo_feel
+* texture
+* salient_differences
+
+Field guidance:
+
+* freeform_description:
+Here’s where you describe the overall lasting impression of the choreography, as prompted above. This is the most important field; think of how you would provide a concise yet informative summary of the choreography to someone who hadn’t seen it. Write about 3-5 natural sentences describing the overall feel of the choreography in dancer-to-dancer language. Focus on the dominant stylistic impression rather than a checklist of features or formal rubric language.
+
+* body_emphasis:
+Give about 3-5 concise sentences describing the body parts and movements themselves that most clearly characterize the choreography. This field is not about the feel or attitude of the choreography, but rather the most basic and concrete description of its actual movements. When useful, describe the choreography in rough sequence across 2-4 major phrases or sections; do not list every move. Note not only the body parts and movements, but also more global features of the movement – for example, whether the dancers travel a lot through the space, whether certain movements repeat on the left and then the right, and so on. If relevant, include a final sentence on the choreography as a whole so that this is not lost in the sequential description: note whether there is a key ‘point’ move or section another dancer would be likely to remember after watching, a notable switch up in vibe or attitude in the middle of the choreography, or similar. Only mention a key or point move when it is genuinely memorable or repeated; if no move particularly stands out, do not invent a point move; just stick to the sequential description. Use more than 3-5 sentences if strictly needed, but do not write filler if you have nothing more to say.
+
+* energy:
+Give about 1-2 concise sentences describing the energy of the piece. Address whether the choreography is low energy, high energy, relaxed, casual, playful, athletic, confrontational, delicate, and so on, but back up your description through the actual concrete movements in the choreography. You may reference what you’ve described in the above fields as evidence. Do not describe the energy with abstract mood words alone.
+
+* foundation_cues:
+Give about 1-3 concise sentences identifying visible movement vocabulary or stylistic foundations. Name specific foundations directly when clearly present: house, hip hop, popping, locking, waacking, contemporary, jazz, ballet, etc. Only identify a choreography with a specific foundation when the associated movement mechanics are dominant, recurring, and structurally central to the choreography as a whole — not just isolated accents, brief references, or occasional borrowed vocabulary. If a choreography contains only occasional elements from a foundation, describe those moments directly without labeling the entire choreography as that style.
+
+Examples of defining mechanics vs. look-alike traps:
+* Waacking = wrist-led whipping arms with rotational elbow/shoulder pathways and disco-rooted posing. NOT any large, expressive, or feminine arm movement.
+* Popping = muscular hits/contractions with tension-release, dime stops, isolations, animation control. NOT any sharp accent or clean freeze.
+* Locking = locks, points, wrist rolls, scoobies, exaggerated character quality. NOT any pointed gesture.
+* House = jacking torso and footwork patterns (jacks, skates, shuffles) over continuous low-center groove. NOT any quick footwork.
+* Hip hop = groove-driven bounce/rock with weighted, conversational upper body. NOT generic urban sharpness or street-styled accents.
+* Contemporary = release-based weight, off-axis balance, floorwork, and sustained full-body phrasing as the organizing logic. NOT any fluid or lyrical moment inside commercial, jazz-funk, or groove-based choreography.
+* Jazz/Ballet = turned-out lines, codified positions, classical line quality sustained through phrases. NOT any extended arm or pointed foot.
+
+When a piece blends foundations, name the one that organizes the movement and mention secondary influences only if their mechanics recur. Distinguish foundation from flavor.
+
+* tempo_feel:
+Give 1 sentence describing perceived movement speed and pacing. Many choreographies will naturally have a moderate tempo, so this field is mostly for pointing out when a choreography feels especially fast, slow, rushed, or spacious. Do not exaggerate or invent a distinctive tempo feel where there is none.
+
+* texture:
+Give about 1-2 sentences describing the movement texture, but ground every quality in visible movement. Do not simply state that the choreography is smooth, sharp, crisp, dense, and so on; explain what movements create this texture. You may reference what you’ve described in the above sections as evidence.
+
+* salient_differences:
+If it’s informative, give about 1-3 concise sentences describing what most distinguishes this particular choreography from the other videos in this comparison set. Mention other videos only as generic labels like "the other videos" or "the group," not by title or filename. Do not exaggerate contrasts if the videos are genuinely similar. I say ‘if it’s informative’ because you may have provided most of the relevant information above already; this field is only for if this video exhibits some quality or has some feature specifically unique to it within this group. For example, perhaps it is the most dramatic whereas the others are more subdued; perhaps it is the most fun whereas the others are more self-serious; perhaps it has a wide variety of moves whereas the others are more foundation-like; perhaps it does storytelling well whereas the others are more about grooving steadily. If there is no additional useful contrast beyond what was already described, write one brief sentence saying that the main distinctions are already captured above.
+
+Use this exact top-level shape:
+{schema_shape}
+Output ONLY the JSON object. Do not include any text before or after. Use valid JSON: double-quoted property names, double-quoted string values, no comments, and no trailing commas.

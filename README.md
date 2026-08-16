@@ -77,5 +77,3 @@ brew install ffmpeg
    ```
 
 6. Use the resulting vectors for clustering or projection plots.
-
-   The included interactive HTML file is a static demo of the kind of visualization this pipeline can produce.

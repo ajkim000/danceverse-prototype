@@ -1,15 +1,21 @@
 # DanceVerse Prototype
 _Alison Kim, Richard Guo_
 
-This is a prototype for DanceVerse, a visualization of a 'universe' of choreography videos, clustered based on choreographic style and movement qualities. 
+DanceVerse is an interactive tool that maps choreography video datasets based on stylistic and movement qualities. The pipeline turns dance clips into text descriptions, creates per-interval movement labels, and converts them into embeddings for clustering and visualization. 
 
 Click on the figure below to check out the interactive plot!
 
 [![DanceVerse interactive scatter plot](danceverse-prototype.png)](https://ajkim000.github.io/danceverse-prototype/danceverse-prototype.html)
 
+Future work will include a larger video dataset and interactive controls for exploring dance qualities a viewer may be seeking.
+
 ## Setup
 
+This project uses Python scripts plus the Gemini API. Generated data, local videos, and API keys are not included in this repo.
+
 ```bash
+git clone https://github.com/ajkim000/danceverse-prototype.git
+cd danceverse-prototype
 python -m venv venv
 source venv/bin/activate
 pip install -r requirements.txt
@@ -22,13 +28,54 @@ Then add your Gemini API key to `.env`:
 GEMINI_API_KEY=your_api_key_here
 ```
 
-Do not commit `.env`.
+You also need `ffmpeg` and `ffprobe` installed locally for video preprocessing. On macOS:
+
+```bash
+brew install ffmpeg
+```
 
 ## Basic Pipeline
 
 1. Prepare short `.mp4` dance clips locally.
-2. Run `get_descriptions.py` to generate comparative choreography descriptions.
-3. Run `get_movement_timeline.py` to generate interval-level movement labels.
-4. Run `get_embeddings.py` to embed the descriptions.
-5. Run `combine_timeline_embeddings.py` to concatenate description embeddings with movement timeline features.
+
+   For example: `data/videos/compressed_no_audio/personal/`
+
+2. Generate comparative choreography descriptions.
+
+   ```bash
+   python get_descriptions.py \
+     --videos-dir data/videos/compressed_no_audio/personal \
+     --output-dir data/descriptions/example_trial \
+     --no-audio
+   ```
+
+3. Generate movement timelines.
+
+   ```bash
+   python get_movement_timeline.py \
+     --videos-dir data/videos/compressed_no_audio/personal \
+     --output-dir data/movement_timelines/example_trial \
+     --timeline-rounds 2 \
+     --timeline-variants 2
+   ```
+
+4. Embed the text descriptions.
+
+   ```bash
+   python get_embeddings.py \
+     --input-dir data/descriptions/example_trial \
+     --output-dir data/embeddings/example_trial
+   ```
+
+5. Combine description embeddings with movement timeline vectors.
+
+   ```bash
+   python combine_timeline_embeddings.py \
+     --embeddings-path data/embeddings/example_trial/embeddings.json \
+     --timeline-dir data/movement_timelines/example_trial \
+     --output-path data/embeddings/example_trial/combined_embeddings.json
+   ```
+
 6. Use the resulting vectors for clustering or projection plots.
+
+   The included interactive HTML file is a static demo of the kind of visualization this pipeline can produce.

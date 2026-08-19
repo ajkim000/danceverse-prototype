@@ -7,7 +7,7 @@ Click on the figure below to check out the interactive plot! Each dot represents
 
 [![DanceVerse interactive scatter plot](danceverse-prototype.png)](https://ajkim000.github.io/danceverse-prototype/danceverse-prototype.html)
 
-Future work will include a larger video dataset and interactive controls for exploring dance qualities a viewer may be seeking.
+The current plot shows early choreographic groupings beginning to form, with videos by the same choreographer appearing near one another. Future work will include a much larger video dataset and interactive controls for exploring dance qualities a viewer may be seeking.
 
 ## Setup
 

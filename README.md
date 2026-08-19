@@ -3,7 +3,7 @@ _Alison Kim, Richard Guo_
 
 DanceVerse is an interactive tool that maps choreography video datasets based on stylistic and movement qualities. The pipeline turns dance clips into text descriptions, creates per-interval movement labels, and converts them into embeddings for clustering and visualization. 
 
-Click on the figure below to check out the interactive plot!
+Click on the figure below to check out the interactive plot! Each dot represents a dance video that was described, embedded, then plotted using UMAP.
 
 [![DanceVerse interactive scatter plot](danceverse-prototype.png)](https://ajkim000.github.io/danceverse-prototype/danceverse-prototype.html)
 
